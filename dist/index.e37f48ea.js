@@ -648,7 +648,6 @@ const controlServings = function(newServings) {
     // Update the recipe servings (in state)
     _modelJs.updateServings(newServings);
     // Update the recipe
-    // recipeView.render(model.state.recipe);
     (0, _recipeViewJsDefault.default).update(_modelJs.state.recipe);
 };
 const controlAddBookmark = function() {
@@ -678,21 +677,11 @@ const controlAddRecipe = async function(newRecipe) {
         (0, _bookmarksViewJsDefault.default).render(_modelJs.state.bookmarks);
         // Change ID in URL
         window.history.pushState(null, "", `#${_modelJs.state.recipe.id}`);
-    // Close form window
-    // setTimeout(function () {
-    //   addRecipeView.toggleWindow();
-    // }, MODAL_CLOSE_SEC * 1000);
-    // setTimeout(function () {
-    //   addRecipeView._reRenderForm();
-    // }, RERENDER_FORM_SEC_1 * 1000);
     } catch (err) {
         console.error(err);
         (0, _addRecipeViewJsDefault.default).renderError(err);
     }
 };
-// const controlCloseAddWindow = function () {
-//   addRecipeView.render(model.state.recipe);
-// };
 const init = function() {
     (0, _bookmarksViewJsDefault.default).addHandlerRender(controlBookmarks);
     (0, _recipeViewJsDefault.default).addHandlerRender(controlRecipes);
@@ -701,7 +690,6 @@ const init = function() {
     (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
     (0, _paginationViewJsDefault.default).addHandlerClick(controlPagination);
     (0, _addRecipeViewJsDefault.default).addHandlerUplaod(controlAddRecipe);
-// addRecipeView.addHandlerHideWindow(controlCloseAddWindow);
 };
 init();
 
