@@ -2048,11 +2048,11 @@ const init = function() {
     const storage = localStorage.getItem("bookmarks");
     if (storage) state.bookmarks = JSON.parse(storage);
 };
-init();
-console.log(state.bookmarks);
+// init();
 const clearBookmarks = function() {
     localStorage.clear("bookmarks");
 };
+clearBookmarks();
 const uploadRecipe = async function(newRecipe) {
     try {
         const ingredients = Object.entries(newRecipe).filter((entry)=>entry[0].startsWith("ingredient") && entry[1] !== "").map((ing)=>{
