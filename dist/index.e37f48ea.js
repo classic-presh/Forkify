@@ -678,13 +678,13 @@ const controlAddRecipe = async function(newRecipe) {
         (0, _bookmarksViewJsDefault.default).render(_modelJs.state.bookmarks);
         // Change ID in URL
         window.history.pushState(null, "", `#${_modelJs.state.recipe.id}`);
-        // Close form window
-        setTimeout(function() {
-            (0, _addRecipeViewJsDefault.default).toggleWindow();
-        }, (0, _configJs.MODAL_CLOSE_SEC) * 1000);
-        setTimeout(function() {
-            (0, _addRecipeViewJsDefault.default)._reRenderForm();
-        }, (0, _configJs.RERENDER_FORM_SEC_1) * 1000);
+    // Close form window
+    // setTimeout(function () {
+    //   addRecipeView.toggleWindow();
+    // }, MODAL_CLOSE_SEC * 1000);
+    // setTimeout(function () {
+    //   addRecipeView._reRenderForm();
+    // }, RERENDER_FORM_SEC_1 * 1000);
     } catch (err) {
         console.error(err);
         (0, _addRecipeViewJsDefault.default).renderError(err);
@@ -2805,7 +2805,10 @@ class RecipeView extends (0, _viewJs.View) {
     _parentElement = document.querySelector(".recipe");
     _errorMessage = "We could not find that recipe. Please try another one";
     _message = "";
-    addHandlerRender(handler) {
+    /**
+   * Adds an event handler which listens for page load nd hash change
+   * @param {Function} handler A series of tasks to be executed
+   */ addHandlerRender(handler) {
         [
             "hashchange",
             "load"
@@ -2929,7 +2932,14 @@ var _iconsSvg = require("url:../../img/icons.svg"); // Parcel 2
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class View {
     _data;
-    render(data, render = true) {
+    /**
+   * Render the received object to the DOM
+   * @param {Object | Object []} data The data to be received (e.g. recipe)
+   * @param {boolean} [render=true] If false, create markup string instead of rendering to the DOM
+   * @returns {undefined | string} A markup string is returned if render=false
+   * @this {Object} View Instance
+   * @author Presh
+   */ render(data, render = true) {
         if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
         this._data = data;
         const markup = this._generateMarkup();
@@ -2937,7 +2947,13 @@ class View {
         this._clear();
         this._parentElement.insertAdjacentHTML("afterbegin", markup);
     }
-    update(data) {
+    /**
+   * Receives an object and update specified elements in the DOM
+   * @param {Object | Object []} data The data to be received (e.g. recipe)
+   * @returns {undefined }
+   * @this {Object} View Instance
+   * @author Presh
+   */ update(data) {
         this._data = data;
         const newMarkup = this._generateMarkup();
         const newDOM = document.createRange().createContextualFragment(newMarkup);
@@ -3562,7 +3578,7 @@ class AddRecipeView extends (0, _view.View) {
         </div>
         <button class="btn upload__btn">
           <svg>
-            <use href="src/img/icons.svg#icon-upload-cloud"></use>
+            <use href="${0, _iconsSvgDefault.default}#icon-upload-cloud"></use>
           </svg>
           <span>Upload</span>
         </button>

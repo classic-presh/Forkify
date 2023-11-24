@@ -81,7 +81,6 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update the recipe
-  // recipeView.render(model.state.recipe);
   recipeView.update(model.state.recipe);
 };
 
@@ -121,24 +120,11 @@ const controlAddRecipe = async function (newRecipe) {
 
     // Change ID in URL
     window.history.pushState(null, '', `#${model.state.recipe.id}`);
-
-    // Close form window
-    setTimeout(function () {
-      addRecipeView.toggleWindow();
-    }, MODAL_CLOSE_SEC * 1000);
-
-    setTimeout(function () {
-      addRecipeView._reRenderForm();
-    }, RERENDER_FORM_SEC_1 * 1000);
   } catch (err) {
     console.error(err);
     addRecipeView.renderError(err);
   }
 };
-
-// const controlCloseAddWindow = function () {
-//   addRecipeView.render(model.state.recipe);
-// };
 
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
@@ -148,7 +134,6 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
   addRecipeView.addHandlerUplaod(controlAddRecipe);
-  // addRecipeView.addHandlerHideWindow(controlCloseAddWindow);
 };
 init();
 // window.addEventListener('hashchange', controlRecipes);
