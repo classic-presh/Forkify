@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --dist-dir ./dist"
+    "build": "parcel build index.html",
+    "prod": "parcel ./dist/index.html"
   },
   "author": "Presh",
   "license": "ISC",
